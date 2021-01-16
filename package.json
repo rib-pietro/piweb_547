@@ -1,0 +1,14 @@
+{
+  "name": "poo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "aula_1.js",
+  "scripts": {
+    "start": "node projeto.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
