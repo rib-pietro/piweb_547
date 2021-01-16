@@ -34,16 +34,6 @@ class Restaurante {
 A ${this.categoria} mais amada!
 A lotação máxima do nosso estabelecimento é de ${this.capacidade} pessoas. Mas devido à pandemia, estamos operando em 50% da capacidade: ${Math.floor(this.capacidade / 2)} pessoas.
 Estaremos abertos a partir das ${this.horario_funcionamento} para atendê-lo.`;
-
-
-        const notas = [8, 7, 6, 10];
-
-        const notasFormatado = notas.reduce((textoAtual, notaAtual, indiceAtual) => {
-            return textoAtual + `${indiceAtual + 1}º Bimestre: ${notaAtual}\n`;
-        }, '');
-
-        console.log(notasFormatado);
-
     }
 
     getFormattedMenu () {
@@ -80,40 +70,7 @@ const pizza2 = new ItemCardapio('Abobrinha', 33.00, 'Pizza');
 const burguer1 = new ItemCardapio('Monstro Burguer', 17.00, 'Lanches');
 
 restaurante.addToMenu(pizza1, pizza2, burguer1);
+// restaurante.addToMenu(pizza2);
+// restaurante.addToMenu(burguer1);
 
 restaurante.run();
-
-
-
-
-// // restaurante.addToMenu(pizza2);
-// // restaurante.addToMenu(burguer1);
-
-// addToRestaurantMenu(restaurante, pizza1);
-
-// console.log(restaurante);
-
-// const notas = [8, 7, 6, 10];
-
-// const notasFormatado = notas.reduce((textoAtual, notaAtual, indiceAtual) => {
-//     return textoAtual + `${indiceAtual + 1}º Bimestre: ${notaAtual}\n`;
-// }, '');
-
-// console.log(notasFormatado);
-
-// const notasBase10 = notas.map(nota => nota * 10);
-// const notasVerdes = notas.filter(nota => nota >= 7);
-// const somaNotas = notas.reduce((somaAtual, notaAtual) => somaAtual + notaAtual);
-
-// console.log(notasBase10);
-// console.log(notasVerdes);
-// console.log(somaNotas);
-
-// let notasFormatado = '';
-
-// for (let idx in notas) {
-//     notasFormatado += `${parseInt(idx) + 1}º Bimestre: ${notas[idx]}\n`;
-// }
-
-// console.log(notasFormatado);
-
