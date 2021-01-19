@@ -239,6 +239,9 @@ Crie uma classe ControleRemoto cujo atributo é televisão (isso é, recebe um o
 class ControleRemoto {
 
     constructor(televisor) {
+        if (!(televisor instanceof Televisor)) {
+            throw "televisor must be of type Televisor"
+        }
         this.televisor = televisor;
     }
 
