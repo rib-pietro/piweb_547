@@ -6,16 +6,6 @@ const rangeCategorias = [
 
 class Restaurante {
 
-    /* Atributos 
-    capacidade
-    categoria
-    nome
-    endereço
-    horario de funcionamento
-    menu
-    */
-    // menu = [];
-
     constructor (
         nome, 
         categoria, 
@@ -55,11 +45,6 @@ class Restaurante {
             return acc && (item instanceof ItemCardapio);
         }, true);
         if (!todosSaoValidos) throw "itemCardapio deve ser uma instância da classe ItemCardapio";
-        // for (let item of itensCardapio) {
-        //     if (!(item instanceof ItemCardapio)) {
-        //         throw "itemCardapio deve ser uma instância da classe ItemCardapio";
-        //     }
-        // }
         this.menu.push(...itensCardapio);
     }
 
@@ -97,13 +82,37 @@ ${this.categoria}`;
     }
 }
 
+class Prato extends ItemCardapio {
+
+    constructor (nome, preco, categoria, nPorcoes) {
+        super(nome, preco, categoria);
+        this.nPorcoes = nPorcoes;
+    }
+
+    toItemString() {
+        return `${super.toItemString()}, Serve ${this.nPorcoes} pessoas`;
+    }
+}
+
+class Bebida extends ItemCardapio {
+
+    constructor (nome, preco, categoria, qntdMl) {
+        super(nome, preco, categoria);
+        this.qntdMl = qntdMl;
+    }
+
+    toItemString() {
+        return `${super.toItemString()}, ${this.qntdMl}ml`;
+    }
+}
+
 const restaurante = new Restaurante(123, 'Cafeteria', 50, '14:00');
-const pizza1 = new ItemCardapio('Calabresa', 35.00, 'Pizza');
-const pizza2 = new ItemCardapio('Abobrinha', 33.00, 'Pizza');
+const pizza1 = new Prato('Calabresa Grande', 35.00, 'Pizza', 3);
+const pizza2 = new Prato('Abobrinha Grande', 33.00, 'Pizza', 3);
+const bebida = new Bebida('Suco de Maracujá', 8.00, 'Suco', 300);
 // restaurante.categoria = ' lanches ';
-restaurante.addToMenu(pizza1, 'pizza2');
+restaurante.addToMenu(pizza1, pizza2, bebida);
 restaurante.run();
-// console.log(restaurante);
 
 
 
