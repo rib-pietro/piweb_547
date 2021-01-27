@@ -26,8 +26,11 @@ class Usuario {
         this.cpf = cpf;
         this.email = email;
 
-        let enderecos = [];
+        const enderecos = [];
         let enderecoFavorito;
+
+        this.getEnderecos = () => enderecos;
+        this.getEnderecoFavorito = () => enderecoFavorito.getApelido();
 
         this.adicionarEndereco = (novoEndereco) => {
             if (!(novoEndereco instanceof Endereco)) throw "novoEndereco deve ser uma instância de Endereco";
@@ -35,6 +38,23 @@ class Usuario {
             if (enderecos.length === 1) {
                 enderecoFavorito = novoEndereco;
             }
+        }
+
+        this.removerEndereco = (apelidoEndereco) => {
+            const indiceEndereco = enderecos.findIndex(e => e.getApelido().toLowerCase() === apelidoEndereco.toLowerCase());
+            if (indiceEndereco === -1) throw `Endereço com apelido ${apelidoEndereco} não cadastrado`;
+            enderecos.splice(indiceEndereco, 1);
+            console.info(`Endereço ${apelidoEndereco} removido com sucesso!!!`);
+        }
+
+        this.atualizarEnderecoFavorito = (apelidoEndereco) => {
+            if (enderecos.length === 1) {
+                console.error(`O usuário ${this.nome} só possui um endereço, portanto não podemos atualizar`);
+                return;
+            }
+            const enderecoEncontrado = enderecos.find(e => e.getApelido().toLowerCase() === apelidoEndereco.toLowerCase());
+            if (!enderecoEncontrado) throw `Endereço com apelido ${apelidoEndereco} não cadastrado`;
+            enderecoFavorito = enderecoEncontrado;
         }
 
     }
@@ -150,4 +170,11 @@ class Endereco {
 }
 
 const endereco = new Endereco('Trampo', 'SP', 'São Paulo', 'Pinheiros', 'Av. Faria Lima', '1306');
-console.log(endereco.enderecoCompleto);
+const endereco2 = new Endereco('Casa da Crush', 'SP', 'São Paulo', 'Pinheiros', 'Rua Guaçuí', '207');
+user.adicionarEndereco(endereco);
+user.adicionarEndereco(endereco2);
+console.log(user.getEnderecoFavorito());
+user.atualizarEnderecoFavorito('Casa da Crush');
+console.log(user.getEnderecoFavorito());
+// user.removerEndereco('TRAMPO');
+// console.log(user.getEnderecos());
