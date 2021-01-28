@@ -84,14 +84,30 @@ ${this.categoria}`;
 
 class Prato extends ItemCardapio {
 
-    constructor (nome, preco, categoria, nPorcoes) {
+    constructor (nome, preco, categoria, nPorcoes, ingredientes) {
         super(nome, preco, categoria);
         this.nPorcoes = nPorcoes;
+        this.ingredientes = ingredientes;
     }
 
     toItemString() {
-        return `${super.toItemString()}, Serve ${this.nPorcoes} pessoas`;
+        const ingredientesStr = this.ingredientes.join(', ');
+        return `${super.toItemString()}\nIngredientes: ${ingredientesStr}, Serve ${this.nPorcoes} pessoas`;
     }
+}
+
+class Pizza extends Prato {
+
+    constructor (nome, preco, categoria, nPorcoes, ingredientes, tamanho, tipoMassa) {
+        super(nome, preco, categoria, nPorcoes, ingredientes);
+        this.tamanho = tamanho;
+        this.tipoMassa = tipoMassa;
+    }
+
+    toItemString() {
+        return `${super.toItemString()}\nTipo da massa: ${this.tipoMassa}, Tamanho: ${this.tamanho}`;
+    }
+
 }
 
 class Bebida extends ItemCardapio {
@@ -107,8 +123,8 @@ class Bebida extends ItemCardapio {
 }
 
 const restaurante = new Restaurante(123, 'Cafeteria', 50, '14:00');
-const pizza1 = new Prato('Calabresa Grande', 35.00, 'Pizza', 3);
-const pizza2 = new Prato('Abobrinha Grande', 33.00, 'Pizza', 3);
+const pizza1 = new Pizza('Calabresa', 35.00, 'Pizza', 3, ['Mussarela', 'Calabresa'], 'Grande', 'Grossa');
+const pizza2 = new Prato('Abobrinha', 33.00, 'Pizza', 3, ['Abobrinha', 'Mussarela de Búfala', 'Alho frito'], 'Grande', 'Integral');
 const bebida = new Bebida('Suco de Maracujá', 8.00, 'Suco', 300);
 // restaurante.categoria = ' lanches ';
 restaurante.addToMenu(pizza1, pizza2, bebida);
